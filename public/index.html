@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brett Moore - Infrastructure Foresight Expert</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fafafa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(59,130,246,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #cbd5e1;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #3b82f6, #06b6d4);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #1e293b;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #3b82f6, #06b6d4);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 24px;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .service-card p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        /* Insights Section */
+        .insights {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .insight-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .insight-header {
+            background: linear-gradient(45deg, #3b82f6, #06b6d4);
+            color: white;
+            padding: 1.5rem;
+            font-weight: 600;
+        }
+
+        .insight-content {
+            padding: 1.5rem;
+        }
+
+        .insight-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+
+        .insight-excerpt {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: 700;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #1e293b;
+        }
+
+        .about-text p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 15px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3b82f6;
+            display: block;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #cbd5e1;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .services-grid,
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card,
+        .insight-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">Brett Moore</div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#insights">Insights</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Infrastructure Foresight</h1>
+                <p class="hero-subtitle">Transforming complex infrastructure challenges into future-ready solutions through strategic vision, deep technical expertise, and proven delivery excellence.</p>
+                <a href="#contact" class="cta-button">Start the Conversation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Strategic Infrastructure Services</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔮</div>
+                    <h3>Infrastructure Foresight & Strategy</h3>
+                    <p>Navigate technological disruption with confidence. I help organizations anticipate infrastructure needs, assess emerging technologies, and develop resilient long-term strategies that adapt to changing landscapes.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3>Cloud Architecture & Modernization</h3>
+                    <p>Design and implement cloud-native architectures that scale with your ambitions. From hybrid cloud strategies to containerization, I deliver solutions that optimize performance, cost, and resilience.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>AI-Driven Infrastructure Intelligence</h3>
+                    <p>Harness the power of artificial intelligence to optimize infrastructure performance, predict failures, and automate operations. Turn your infrastructure data into actionable insights and competitive advantage.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Cyber-Physical Security Architecture</h3>
+                    <p>Protect critical infrastructure with integrated security strategies that address both digital and physical threats. Design resilient security postures for interconnected, evolving threat landscapes.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Project Recovery & Transformation</h3>
+                    <p>Turn failing projects into success stories. With deep experience in complex program recovery, I diagnose issues, realign stakeholders, and deliver results when conventional approaches fall short.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📈</div>
+                    <h3>Executive Advisory & Leadership</h3>
+                    <p>Bridge the gap between technical possibility and business strategy. I provide C-level advisory services, helping leaders make informed infrastructure decisions that drive growth and competitive advantage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insights Section -->
+    <section class="insights" id="insights">
+        <div class="container">
+            <h2 class="section-title">Latest Insights & Thought Leadership</h2>
+            
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-header">Featured Article</div>
+                    <div class="insight-content">
+                        <h3 class="insight-title">Beyond the Hype Cycle: Which Emerging Tech Actually Matters for Your Infrastructure's Next Decade?</h3>
+                        <p class="insight-excerpt">Cutting through the noise to identify truly transformative technologies versus fleeting trends. A strategic framework for infrastructure leaders...</p>
+                        <a href="#" class="read-more">Read Full Article →</a>
+                    </div>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-header">Case Study</div>
+                    <div class="insight-content">
+                        <h3 class="insight-title">The 'What If?' Imperative: How Scenario Planning Uncovered a Multi-Million Pound Risk</h3>
+                        <p class="insight-excerpt">A real-world example of how comprehensive foresight analysis identified and mitigated critical infrastructure vulnerabilities...</p>
+                        <a href="#" class="read-more">View Case Study →</a>
+                    </div>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-header">White Paper</div>
+                    <div class="insight-content">
+                        <h3 class="insight-title">The Resilient Infrastructure Blueprint: A Framework for 2030s Disruption</h3>
+                        <p class="insight-excerpt">Comprehensive guide combining trend analysis, scenario planning, and strategic technology adoption paths for infrastructure leaders...</p>
+                        <a href="#" class="read-more">Download PDF →</a>
+                    </div>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-header">Video Series</div>
+                    <div class="insight-content">
+                        <h3 class="insight-title">AI as Your Infrastructure's Crystal Ball</h3>
+                        <p class="insight-excerpt">Practical applications of AI for predictive maintenance, performance optimization, and enhanced security in critical infrastructure...</p>
+                        <a href="#" class="read-more">Watch Series →</a>
+                    </div>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-header">Industry Report</div>
+                    <div class="insight-content">
+                        <h3 class="insight-title">Multi-Cloud by Design: Strategic Foresight Approach to Cloud Architecture</h3>
+                        <p class="insight-excerpt">Moving beyond reactive multi-cloud adoption to intentional, resilient, and cost-optimized future architectures...</p>
+                        <a href="#" class="read-more">Access Report →</a>
+                    </div>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-header">Executive Brief</div>
+                    <div class="insight-content">
+                        <h3 class="insight-title">The ROI of Foresight: Making the Business Case for Long-Term Infrastructure Planning</h3>
+                        <p class="insight-excerpt">Helping leaders articulate the value of investing in foresight activities to stakeholders and board members...</p>
+                        <a href="#" class="read-more">Read Brief →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">BM</div>
+                
+                <div class="about-text">
+                    <h2>Strategic Vision Meets Technical Excellence</h2>
+                    <p>With over two decades of experience leading complex infrastructure transformations, I bridge the critical gap between emerging technological possibilities and practical business outcomes.</p>
+                    
+                    <p>My unique approach combines deep technical expertise in cloud architecture, AI/ML, and cybersecurity with strategic foresight methodologies, enabling organizations to not just adapt to change, but to anticipate and leverage it for competitive advantage.</p>
+                    
+                    <p>From rescuing failing multi-million pound projects to designing the infrastructure strategies that power tomorrow's innovations, I deliver results when stakes are highest and conventional approaches fall short.</p>
+                    
+                    <div class="stats">
+                        <div class="stat">
+                            <span class="stat-number">20+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">£2B+</span>
+                            <span class="stat-label">Program Value</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Ready to Future-Proof Your Infrastructure?</h2>
+            <p>Let's discuss how strategic foresight can transform your infrastructure challenges into competitive advantages.</p>
+            <a href="mailto:brett@example.com" class="cta-button">Schedule a Strategic Consultation</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Brett Moore. All rights reserved. | Infrastructure Foresight Expert</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.service-card, .insight-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
